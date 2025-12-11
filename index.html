@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Anel Dos Quatro Reinos RPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgm-player" src="assets/audio/bgm_menu.mp3" loop autoplay></audio>
+    <button id="toggle-music" class="music-toggle-button">🔊 Música ON</button>
+
+    <header>
+        <img src="assets/images/logo.png" alt="O Anel Dos Quatro Reinos RPG RPG Logo" id="main-logo">
+        <h1>O Anel Dos Quatro Reinos RPG</h1>
+    </header>
+
+    <main id="game-container">
+        <div id="save-feedback" class="hidden-feedback">💾 Jogo Salvo!</div>
+    <div id="notification-popup" class="notification-popup hidden"></div>
+
+        <section id="title-screen" class="game-screen active-screen">
+            <h2 class="neon-text">Aventure-se pelos Quatro Reinos</h2>
+            
+            <div id="main-menu">
+                <button id="newGameButton" class="menu-button">▶️ INICIAR NOVO JOGO</button>
+                <button id="loadGameButton" class="menu-button">💾 CONTINUAR / CARREGAR JOGO</button>
+                <button id="controlsButton" class="menu-button">🕹️ CONTROLES / COMO JOGAR</button>
+            </div>
+        </section>
+
+        <section id="controls-screen" class="game-screen hidden-screen">
+            <h2>🕹️ Controles e Como Jogar</h2>
+            
+            <div class="controls-info">
+                <h3>Exploração:</h3>
+                <ul>
+                    <li>**Mover Esquerda/Direita (⬅️/➡️ ou A/D):** Movimenta o personagem na tela e possui uma pequena chance de encontrar um inimigo.</li>
+                    <li>**Mover Cima/Baixo (⬆️/⬇️ ou W/S):** Move verticalmente o personagem para tentar esquivar ou se posicionar.</li>
+                    <li>**Pular / Esquivar (Espaço):** Animação de pulo para se esticar (ou ação defensiva em combate).</li>
+                    <li>**Meditar/Descansar (🧘):** Recupera PV e MP, mas pode ser interrompido por inimigos.</li>
+                    <li>**Explorar Caminho (🔍):** Chance de Inimigos (50%) ou Itens (30%). Também pode iniciar um **Quiz Inesperado**.</li>
+                </ul>
+                
+                <h3>Combate:</h3>
+                <p>Durante a batalha, as ações são:</p>
+                <ul>
+                    <li>**Ataque da Classe:** Habilidades que consomem MP e causam dano ao inimigo.</li>
+                    <li>**Pular / Esquivar (💨):** Ação defensiva que aumenta sua agilidade no turno.</li>
+                    <li>**Tentar Fugir (🏃‍♂️):** Tenta escapar do combate com base na sua Agilidade.</li>
+                </ul>
+            </div>
+            
+            <button id="backFromControlsButton" class="menu-button">↩️ VOLTAR AO MENU</button>
+        </section>
+        
+        <section id="load-screen" class="game-screen hidden-screen">
+            <h2>Escolha um Slot para Carregar ou Iniciar</h2>
+            <div id="save-slots-list">
+            </div>
+            <button id="backToTitleButton" class="menu-button">↩️ VOLTAR</button>
+        </section>
+        
+        <section id="character-creation" class="game-screen hidden-screen">
+            <h2>Criação de Personagem</h2>
+            
+            <div id="name-input-area">
+                <label for="playerName">Nome do Herói:</label>
+                <input type="text" id="playerName" placeholder="Insira seu nome aqui">
+            </div>
+            
+            <h3>Escolha Sua Classe</h3>
+            <div id="class-selection">
+            </div>
+
+            <div id="class-details">
+                <p>Selecione uma classe acima para ver os atributos iniciais e o visual do personagem.</p>
+            </div>
+
+            <button id="startGameButton" disabled>Começar Aventura</button>
+        </section>
+
+        <section id="game-play" class="game-screen hidden-screen">
+            <div id="player-status">
+            </div>
+            
+            <div id="scenario-image">
+                <div id="player-figure"></div>
+                <div id="enemy-figure"></div>
+                <div id="map-mobs"></div>
+                <div id="mini-map" class="mini-map">
+                    <div id="mini-player"></div>
+                </div>
+            </div>
+            
+            <div id="game-text">
+            </div>
+            
+            <div id="action-buttons">
+            </div>
+            
+            <!-- Mobile Virtual Joystick -->
+            <div id="mobile-joystick" class="mobile-joystick hidden">
+                <div class="joystick-container">
+                    <div class="joystick-base">
+                        <div class="joystick-stick"></div>
+                    </div>
+                    <div class="joystick-label">Mover</div>
+                </div>
+                <div class="mobile-action-buttons">
+                    <button class="mobile-action-btn jump-btn">💨<br>Pular</button>
+                    <button class="mobile-action-btn explore-btn">🔍<br>Explorar</button>
+                    <button class="mobile-action-btn meditate-btn">🧘<br>Meditar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-screen" class="game-screen hidden-screen">
+            <h2 id="quiz-title" class="neon-text">🤔 Teste de Conhecimento</h2>
+            
+            <div id="quiz-content" class="controls-info">
+                <p id="quiz-question" style="font-size: 1.2em; margin-bottom: 20px;"></p>
+                <div id="quiz-options"></div>
+                <p id="quiz-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+            </div>
+            
+            <button id="quizBackButton" class="menu-button" style="margin-top: 20px;">↩️ Continuar</button>
+        </section>
+
+        <section id="shop-screen" class="game-screen hidden-screen">
+            <h2 class="neon-text">🛍️ Loja do Viajante</h2>
+            <p id="shop-player-money" style="font-size: 1.2em; margin-bottom: 20px;">Seu Ouro: 0 💰</p>
+            <div id="shop-items-list" style="width: 100%; max-width: 700px;">
+                </div>
+            <p id="shop-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+            <button id="backToExplorationButton" class="menu-button" style="margin-top: 20px;" onclick="loadPhase(gameState.currentPhase)">↩️ Voltar à Exploração</button>
+        </section>
+        
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
