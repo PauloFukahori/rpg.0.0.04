@@ -1,80 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Anel Dos Quatro Reinos RPG</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22> viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text> </svg>">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome CDN para ícones do menu -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <audio id="bgm-player" src="assets/audio/bgm_menu.mp3" loop autoplay></audio>
-    <button id="toggle-music" class="music-toggle-button">🔊 Música ON</button>
-
-    <header>
-        <img src="assets/images/logo.png" alt="O Anel Dos Quatro Reinos RPG RPG Logo" id="main-logo">
-        <h1>O Anel Dos Quatro Reinos RPG</h1>
-    </header>
+    <button id="toggle-music" class="music-toggle-button"><i class="fa-solid fa-volume-high"></i> Música ON</button>
 
     <main id="game-container">
-        <div id="save-feedback" class="hidden-feedback">💾 Jogo Salvo!</div>
-    <div id="notification-popup" class="notification-popup hidden"></div>
+        <div id="save-feedback" class="hidden-feedback"><i class="fa-solid fa-floppy-disk"></i> Jogo Salvo!</div>
+        <div id="notification-popup" class="notification-popup hidden"></div>
 
         <section id="title-screen" class="game-screen active-screen">
-            <h2 class="neon-text">Aventure-se pelos Quatro Reinos</h2>
-            
-            <div id="main-menu">
-                <button id="newGameButton" class="menu-button">▶️ INICIAR NOVO JOGO</button>
-                <button id="loadGameButton" class="menu-button">💾 CONTINUAR / CARREGAR JOGO</button>
-                <button id="controlsButton" class="menu-button">🕹️ CONTROLES / COMO JOGAR</button>
+            <div class="title-content">
+                <div class="logo-container animated-fade-in">
+                    <img id="main-logo" src="assets/images/logo.png" alt="Logo do Jogo">
+                    <h1 class="game-title">
+                        <span class="title-line title-top">O Anel dos</span>
+                        <span class="title-line title-middle">QUATRO REINOS</span>
+                    </h1>
+                </div>
+
+                <p class="game-subtitle animated-slide-up">
+                    Uma jornada épica pelos reinos lendários
+                </p>
+
+                <div id="main-menu" class="animated-scale-up">
+                    <button id="newGameButton" class="menu-button epic-button">
+                        <span class="button-icon"><i class="fa-solid fa-play"></i></span>
+                        <span class="button-text">Novo Jogo</span>
+                    </button>
+                    <button id="loadGameButton" class="menu-button epic-button">
+                        <span class="button-icon"><i class="fa-solid fa-save"></i></span>
+                        <span class="button-text">Continuar</span>
+                    </button>
+                    <button id="controlsButton" class="menu-button epic-button">
+                        <span class="button-icon"><i class="fa-solid fa-gamepad"></i></span>
+                        <span class="button-text">Controles</span>
+                    </button>
+                </div>
+
+                <div class="game-info animated-fade-in-delay">
+                    <p class="info-text">🎯 7 Reinos · 65+ Itens · 11 Classes · Bosses Épicos</p>
+                    <p class="version-text">v0.0.04</p>
+                    <p class="developers-text">Desenvolvido por My e Paulo</p>
+                </div>
             </div>
         </section>
 
         <section id="controls-screen" class="game-screen hidden-screen">
-            <h2>🕹️ Controles e Como Jogar</h2>
-            
+            <h2><i class="fa-solid fa-gamepad"></i> Controles e Como Jogar</h2>
+
             <div class="controls-info">
-                <h3>Exploração:</h3>
+                <h3><i class="fa-solid fa-keyboard"></i> Atalhos de Teclado (PC):</h3>
                 <ul>
-                    <li>**Mover Esquerda/Direita (⬅️/➡️ ou A/D):** Movimenta o personagem na tela e possui uma pequena chance de encontrar um inimigo.</li>
-                    <li>**Mover Cima/Baixo (⬆️/⬇️ ou W/S):** Move verticalmente o personagem para tentar esquivar ou se posicionar.</li>
-                    <li>**Pular / Esquivar (Espaço):** Animação de pulo para se esticar (ou ação defensiva em combate).</li>
-                    <li>**Meditar/Descansar (🧘):** Recupera PV e MP, mas pode ser interrompido por inimigos.</li>
-                    <li>**Explorar Caminho (🔍):** Chance de Inimigos (50%) ou Itens (30%). Também pode iniciar um **Quiz Inesperado**.</li>
+                    <li><strong><i class="fa-solid fa-arrow-left"></i> A / <i class="fa-solid fa-arrow-right"></i>
+                            D</strong> - Mover Esquerda/Direita</li>
+                    <li><strong><i class="fa-solid fa-arrow-up"></i> W / <i class="fa-solid fa-arrow-down"></i>
+                            S</strong> - Mover Cima/Baixo</li>
+                    <li><strong>Espaço</strong> - Pular/Esquivar</li>
+                    <li><strong>E</strong> - Explorar Área</li>
+                    <li><strong>M</strong> - Meditar (Recupera PV/MP)</li>
+                    <li><strong>I</strong> - Abrir Inventário</li>
+                    <li><strong>L</strong> - Abrir Loja</li>
+                    <li><strong>P</strong> - Salvar Jogo</li>
                 </ul>
-                
-                <h3>Combate:</h3>
-                <p>Durante a batalha, as ações são:</p>
+
+                <h3><i class="fa-solid fa-swords"></i> Combate:</h3>
                 <ul>
-                    <li>**Ataque da Classe:** Habilidades que consomem MP e causam dano ao inimigo.</li>
-                    <li>**Pular / Esquivar (💨):** Ação defensiva que aumenta sua agilidade no turno.</li>
-                    <li>**Tentar Fugir (🏃‍♂️):** Tenta escapar do combate com base na sua Agilidade.</li>
+                    <li><strong>1-4 ou Q/W/E/R</strong> - Usar Ataques</li>
+                    <li><strong>Espaço</strong> - Esquivar</li>
+                    <li><strong>F ou ESC</strong> - Fugir</li>
+                </ul>
+
+                <h3><i class="fa-solid fa-mobile-screen"></i> Controles Mobile:</h3>
+                <p>No celular, use o <strong>joystick virtual</strong> na parte inferior da tela para se mover e os
+                    botões laterais para ações.</p>
+
+                <h3><i class="fa-solid fa-compass"></i> Exploração:</h3>
+                <ul>
+                    <li>**Mover Esquerda/Direita:** Movimenta o personagem e pode encontrar inimigos</li>
+                    <li>**Mover Cima/Baixo:** Posicionamento vertical no cenário</li>
+                    <li>**Pular / Esquivar:** Animação de pulo (ou defesa em combate)</li>
+                    <li>**Meditar/Descansar (<i class="fa-solid fa-spa"></i> ou M):** Recupera PV e MP, mas pode ser
+                        interrompido</li>
+                    <li>**Explorar Caminho (<i class="fa-solid fa-magnifying-glass"></i> ou E):** 50% chance de
+                        inimigos, 30% de itens, pode iniciar Quiz</li>
+                </ul>
+
+                <h3><i class="fa-solid fa-lightbulb"></i> Dicas Importantes:</h3>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Salve frequentemente! Use <strong>P</strong> no PC ou botão
+                        Salvar</li>
+                    <li><i class="fa-solid fa-check"></i> Use consumíveis do inventário durante exploração (não no
+                        combate)</li>
+                    <li><i class="fa-solid fa-check"></i> Equipamentos são aplicados automaticamente ao comprar</li>
+                    <li><i class="fa-solid fa-check"></i> Derrote <strong>3 inimigos + Boss</strong> para passar de fase
+                    </li>
+                    <li><i class="fa-solid fa-check"></i> Loja desbloqueia novos itens a cada fase</li>
                 </ul>
             </div>
-            
-            <button id="backFromControlsButton" class="menu-button">↩️ VOLTAR AO MENU</button>
+
+            <button id="backFromControlsButton" class="menu-button"><i class="fa-solid fa-reply"></i> VOLTAR AO
+                MENU</button>
         </section>
-        
+
         <section id="load-screen" class="game-screen hidden-screen">
             <h2>Escolha um Slot para Carregar ou Iniciar</h2>
             <div id="save-slots-list">
             </div>
-            <button id="backToTitleButton" class="menu-button">↩️ VOLTAR</button>
+            <button id="backToTitleButton" class="menu-button"><i class="fa-solid fa-reply"></i> VOLTAR</button>
         </section>
-        
+
         <section id="character-creation" class="game-screen hidden-screen">
             <h2>Criação de Personagem</h2>
-            
+
             <div id="name-input-area">
                 <label for="playerName">Nome do Herói:</label>
                 <input type="text" id="playerName" placeholder="Insira seu nome aqui">
             </div>
-            
+
             <h3>Escolha Sua Classe</h3>
-            <div id="class-selection">
+            <div class="class-creation-row">
+                <div id="class-selection">
+                </div>
+
+                <div id="class-side-card" class="hidden">
+                    <button id="close-class-card" class="close-class-card" aria-label="Fechar">×</button>
+                    <div id="class-side-content"></div>
+                </div>
             </div>
 
-            <div id="class-details">
+            <div id="class-details" style="display:none;">
                 <p>Selecione uma classe acima para ver os atributos iniciais e o visual do personagem.</p>
             </div>
 
@@ -82,24 +149,44 @@
         </section>
 
         <section id="game-play" class="game-screen hidden-screen">
-            <div id="player-status">
+            <div id="player-status" class="modern-hud">
+                <div class="hud-top">
+                    <div id="player-name-display" class="hud-name">Hero Name</div>
+                </div>
+                <div class="hud-bars">
+                    <div class="hud-bar-container">
+                        <i class="fa-solid fa-heart hud-icon hp-icon"></i>
+                        <div class="progress-bar-bg">
+                            <div id="hp-bar-fill" class="progress-bar-fill hp-fill" style="width: 100%;"></div>
+                            <span id="hp-text" class="bar-text">100/100</span>
+                        </div>
+                    </div>
+                    <div class="hud-bar-container">
+                        <i class="fa-solid fa-bolt hud-icon mp-icon"></i>
+                        <div class="progress-bar-bg">
+                            <div id="mp-bar-fill" class="progress-bar-fill mp-fill" style="width: 100%;"></div>
+                            <span id="mp-text" class="bar-text">50/50</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hud-stats-grid">
+                    <!-- Will be populated by JS with icons -->
+                </div>
             </div>
-            
+
             <div id="scenario-image">
                 <div id="player-figure"></div>
                 <div id="enemy-figure"></div>
                 <div id="map-mobs"></div>
-                <div id="mini-map" class="mini-map">
-                    <div id="mini-player"></div>
-                </div>
+                <!-- Mini-map removed as requested -->
             </div>
-            
+
             <div id="game-text">
             </div>
-            
+
             <div id="action-buttons">
             </div>
-            
+
             <!-- Mobile Virtual Joystick -->
             <div id="mobile-joystick" class="mobile-joystick hidden">
                 <div class="joystick-container">
@@ -109,36 +196,48 @@
                     <div class="joystick-label">Mover</div>
                 </div>
                 <div class="mobile-action-buttons">
-                    <button class="mobile-action-btn jump-btn">💨<br>Pular</button>
-                    <button class="mobile-action-btn explore-btn">🔍<br>Explorar</button>
-                    <button class="mobile-action-btn meditate-btn">🧘<br>Meditar</button>
+                    <button class="mobile-action-btn jump-btn"><i class="fa-solid fa-wind"></i><br>Pular</button>
+                    <button class="mobile-action-btn explore-btn"><i
+                            class="fa-solid fa-magnifying-glass"></i><br>Explorar</button>
+                    <button class="mobile-action-btn meditate-btn"><i class="fa-solid fa-spa"></i><br>Meditar</button>
                 </div>
             </div>
         </section>
 
         <section id="quiz-screen" class="game-screen hidden-screen">
-            <h2 id="quiz-title" class="neon-text">🤔 Teste de Conhecimento</h2>
-            
-            <div id="quiz-content" class="controls-info">
-                <p id="quiz-question" style="font-size: 1.2em; margin-bottom: 20px;"></p>
-                <div id="quiz-options"></div>
-                <p id="quiz-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+            <div id="quiz-intro-image" class="quiz-intro-image">
+                <img src="assets/images/scenes/MapaBoss  castelo final da fase  final.png" alt="Quiz">
             </div>
-            
-            <button id="quizBackButton" class="menu-button" style="margin-top: 20px;">↩️ Continuar</button>
+
+            <div class="quiz-container">
+                <h2 id="quiz-title" class="quiz-title"><i class="fa-solid fa-circle-question"></i> Teste de Conhecimento
+                </h2>
+
+                <div id="quiz-content" class="quiz-content">
+                    <p id="quiz-question" class="quiz-question"></p>
+                    <div id="quiz-options" class="quiz-options"></div>
+                    <p id="quiz-feedback" class="quiz-feedback"></p>
+                </div>
+
+                <button id="quizBackButton" class="quiz-back-button"><i class="fa-solid fa-arrow-right"></i>
+                    Continuar</button>
+            </div>
         </section>
 
         <section id="shop-screen" class="game-screen hidden-screen">
-            <h2 class="neon-text">🛍️ Loja do Viajante</h2>
-            <p id="shop-player-money" style="font-size: 1.2em; margin-bottom: 20px;">Seu Ouro: 0 💰</p>
+            <h2 class="neon-text"><i class="fa-solid fa-shop"></i> Loja do Viajante</h2>
+            <p id="shop-player-money" style="font-size: 1.2em; margin-bottom: 20px;">Seu Ouro: 0 <i
+                    class="fa-solid fa-coins"></i></p>
             <div id="shop-items-list" style="width: 100%; max-width: 700px;">
-                </div>
+            </div>
             <p id="shop-feedback" style="margin-top: 15px; font-weight: bold;"></p>
-            <button id="backToExplorationButton" class="menu-button" style="margin-top: 20px;" onclick="loadPhase(gameState.currentPhase)">↩️ Voltar à Exploração</button>
+            <button id="backToExplorationButton" class="menu-button" style="margin-top: 20px;"
+                onclick="loadPhase(gameState.currentPhase)"><i class="fa-solid fa-reply"></i> Voltar à
+                Exploração</button>
         </section>
-        
+
     </main>
-    
+
     <!-- Módulos JS - Carregados na ordem correta -->
     <script src="js/config.js"></script>
     <script src="js/classes.js"></script>
@@ -147,4 +246,5 @@
     <script src="js/items.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -49,42 +49,51 @@ rpg.0.0.04/
 - `combatState`: Estado temporário das batalhas
 - `selectedClass`: Classe selecionada
 
-### 2. **classes.js** (62 linhas)
-- Objeto `CLASSES` com 5 classes jogáveis:
+### 2. **classes.js** (240+ linhas)
+- Objeto `CLASSES` com 11 classes jogáveis:
   - **Guerreiro**: Tank com alto PV e dano físico
-  - **Mago**: Dano mágico elevado, baixa defesa
+  - **Mago**: Dano mágico elevado, baixa defesa  
   - **Ladino**: Ataques rápidos e alta agilidade
   - **Minotauro**: Defensor com habilidades de cura
   - **Caçador**: Atirador versátil
-- Cada classe tem: stats base, ataques, imagem
+  - **Paladino**: Tanque com cura e resistência
+  - **Necromante**: Controle de mortos-vivos
+  - **Bardo**: Suporte com buffs de grupo
+  - **Monge**: Artes marciais e velocidade
+  - **Druida**: Controle da natureza
+  - **Bárbaro**: Fúria e dano bruto
+- Cada classe tem: stats base, 4 ataques únicos, lore, imagem
 
-### 3. **mobs.js** (32 linhas)
+### 3. **mobs.js** (180+ linhas) 
 - Objeto `ENEMIES` com todos os inimigos:
-  - 8 mobs comuns (fases 1-4)
-  - 4 bosses de fase
-  - 1 boss final
+  - 21+ mobs comuns (3 por fase, fases 1-7)
+  - 8 bosses únicos (1 por fase)
+  - Sistema de drops com anéis de boss
 - Cada inimigo tem: PV, ataque, defesa, recompensas, drops, sprite
+- Boss drops: Anéis com buffs permanentes
 
-### 4. **maps.js** (36 linhas)
-- Objeto `PHASES` com 5 fases do jogo:
-  - Fases 1-4: Reinos elementais (Fogo, Água, Terra, Ar)
-  - Fase 5: Quiz final + Boss final
-- Cada fase tem: nome, cenário, intro, inimigos, boss, kills necessárias
+### 4. **maps.js** (200+ linhas)
+- Objeto `PHASES` com 8 fases do jogo:
+  - Fases 1-7: Reinos diversos com lore expandida
+  - Fase 8: Boss final épico
+- Cada fase tem: nome, cenário, intro, inimigos únicos, boss exclusivo
+- Sistema de spawn: 3 kills → 70% chance boss aparecer
 
 ### 5. **items.js** (69 linhas)
 - `RANDOM_ITEMS`: Drops aleatórios (poções, buffs, debuffs)
 - `QUIZ_QUESTIONS`: Perguntas do quiz com recompensas
 - `SHOP_ITEMS`: Itens vendidos na loja (consumíveis e equipamentos)
 
-### 6. **main.js** (2012 linhas) ⚠️
-- **TODO**: Este arquivo ainda contém toda a lógica do jogo
-- Futuramente deve ser dividido em:
-  - `battles.js`: Sistema de combate
-  - `audio.js`: Controle de música
-  - `victory.js`: Tela de vitória
-  - `game-over.js`: Tela de game over
-  - `saves.js`: Sistema de save/load
-  - `ui.js`: Funções de interface
+### 6. **main.js** (3320+ linhas) ✅
+- **Sistemas Implementados**:
+  - ✅ Sistema de 3 vidas com penalidades progressivas
+  - ✅ Inventário baseado em objetos (não array)
+  - ✅ Sistema de anéis com 4 slots de equipamento
+  - ✅ Boss spawn com 70% de chance após 3 kills
+  - ✅ Sistema de save/load com 5 slots
+  - ✅ Combate com uso de inventário
+  - ✅ Loja com 70+ itens organizados
+  - ✅ Share no WhatsApp e quiz de lore
 
 ## 📋 Ordem de Carregamento (index.html)
 
@@ -110,16 +119,18 @@ Por enquanto, todo o CSS está em `css/style.css` (888+ linhas).
 - `combat.css`: Interface de batalha
 - `mobile.css`: Responsividade e touch controls
 
-## 🚀 Próximas Melhorias
+## 🚀 Estado Atual das Melhorias
 
 1. ✅ Estrutura modular de pastas
-2. ✅ CSS movido para pasta própria
+2. ✅ CSS movido para pasta própria  
 3. ✅ JavaScript dividido em módulos básicos
-4. ⏳ Dividir `main.js` em submódulos funcionais
-5. ⏳ Dividir `style.css` em módulos temáticos
-6. ⏳ Implementar sistema de 7 mapas com mobs individuais
-7. ⏳ Adicionar sistema de spawn visual de mobs
-8. ⏳ Melhorar UI/UX da tela inicial
+4. ✅ Sistema de 8 mapas com mobs individuais implementado
+5. ✅ Sistema de anéis e equipamentos funcionando
+6. ✅ Sistema de 3 vidas com morte progressiva
+7. ✅ Boss spawn com 70% chance implementado
+8. ✅ Inventário reescrito (objeto vs array)
+9. ⏳ Dividir `main.js` em submódulos funcionais
+10. ⏳ Dividir `style.css` em módulos temáticos
 
 ## 📝 Notas de Desenvolvimento
 
@@ -130,5 +141,6 @@ Por enquanto, todo o CSS está em `css/style.css` (888+ linhas).
 
 ---
 
-**Última atualização**: Dezembro 2025
-**Status**: Estrutura modular básica implementada ✅
+**Última atualização**: 12 de dezembro de 2025
+**Status**: Jogo completamente funcional com 8 fases ✅  
+**Versão**: 0.0.04 - Sistema de anéis e 3 vidas implementado
