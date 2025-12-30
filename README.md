@@ -1,6 +1,5 @@
 # 🎮 O Anel dos Quatro Reinos
-### RPG de Navegador - JavaScript Vanilla
-
+### RPG de Navegador
 **RPG completo** com **11 classes**, **8 fases**, **sistema de anéis interativo**, **3 vidas** e **inventário avançado**.
 
 ## 🚀 **Como Jogar**
